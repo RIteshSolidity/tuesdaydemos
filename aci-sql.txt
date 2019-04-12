@@ -1,0 +1,1 @@
+docker run -d --name sqlfts0 -p 1433:1433 -v c:\mydata:c:\data  -e sa_password=citynext!1234 -e ACCEPT_EULA=Y microsoft/mssql-server-windows-developer:latest
