@@ -1,0 +1,9 @@
+
+az group create --name acrrg --location "west europe" --verbose
+az acr create --name acrmclass09 --resource-group acrrg --location "west europe" --sku Standard --admin-enabled true
+az acr credential show --name acrmclass09 --resource-group acrrg --verbose
+az acr login --password agTLnK/nUGn8htJRox/8ARdFF1S/I0RM --username acrmclass09 --name acrmclass09 --verbose
+docker tag mclasswebserver:latest acrmclass09.azurecr.io/mclasswebserver:latest
+docker push acrmclass09.azurecr.io/mclasswebserver:latest
+
+az container create  --resource-group acrrg --cpu 2 --dns-name-label acimclass10 --image acrmclass09.azurecr.io/webapplication8:latest --ip-address public --location "east US" --memory 7 --os-type windows --ports 80  --registry-login-server acrmclass09.azurecr.io --registry-password agTLnK/nUGn8htJRox/8ARdFF1S/I0RM --registry-username acrmclass09 --name acimclass10 --verbose
